@@ -1,4 +1,8 @@
 package org.pgm.jpa01.repository;
 
-public interface MemberRepository {
+import org.pgm.jpa01.domain.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MemberRepository extends JpaRepository<Member, Long> {
+
 }

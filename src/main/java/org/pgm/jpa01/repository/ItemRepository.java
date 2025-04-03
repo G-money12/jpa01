@@ -1,4 +1,8 @@
 package org.pgm.jpa01.repository;
 
-public interface ItemRepository {
+import org.pgm.jpa01.domain.Item;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ItemRepository extends JpaRepository<Item, Long> {
+
 }

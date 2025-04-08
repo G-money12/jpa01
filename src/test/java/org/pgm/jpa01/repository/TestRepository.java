@@ -2,6 +2,7 @@ package org.pgm.jpa01.repository;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
+import org.pgm.jpa01.domain.Board;
 import org.pgm.jpa01.domain.Item;
 import org.pgm.jpa01.domain.ItemSellStatus;
 import org.pgm.jpa01.domain.Member;
@@ -18,6 +19,28 @@ import java.util.List;
 public class TestRepository {
     @Autowired
     private DataSource dataSource;
+    @Autowired
+    private MemberRepository memeberRepository;
+    @Autowired
+    private BoardRepository boardRepository;
+    @Test
+    public void testfindName(){
+        Member member = memeberRepository.name("admin");
+        log.info(member);
+    }
+    @Test
+    public void testfindByUsername(){
+
+    }
+
+    @Test
+    public void TestBoardInsert(){
+        Board board = new Board();
+        board.setTitle("title");
+        board.setContent("content");
+        board.setAuthor("author");
+        boardRepository.save(board);
+    }
     @Autowired
     private MemberRepository memberRepository;
     @Autowired
@@ -41,11 +64,13 @@ public class TestRepository {
         log.info(items);
     }
     // findById
+    @Test
     public void testItemFindById() throws SQLException {
         Member member = memberRepository.findById(1L).get();
         log.info(member);
     }
     // update(save)
+    @Test
     public void testItemUpdate() throws SQLException {
         Item item = itemRepository.findById(1L).get();
         item.setPrice(2000);
@@ -55,14 +80,10 @@ public class TestRepository {
 
     }
     // deleteById
+    @Test
     public void testItemDeleteById() throws SQLException {
         itemRepository.deleteById(1L);
     }
-
-
-
-
-
 
 
 
@@ -72,15 +93,16 @@ public class TestRepository {
         Connection connection = dataSource.getConnection();
         log.info(connection);
     }
-    @Test
-    public void testInsert() throws SQLException {
-        Member member = new Member();
-        member.setName("test2");
-        member.setPassword("123456");
-        member.setEmail("test2@gmail.com");
-        member.setAddr("부산");
-        memberRepository.save(member);
-    }
+
+//    @Test
+//    public void testInsert() throws SQLException {
+//        Member member = new Member();
+//        member.setName("test2");
+//        member.setPassword("123456");
+//        member.setEmail("test2@gmail.com");
+//        member.setAddr("부산");
+//        memberRepository.save(member);
+//    }
     @Test
     public void testFindAll() throws SQLException {
         List<Member> members = memberRepository.findAll();

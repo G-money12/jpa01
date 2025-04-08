@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}"
+      lang="en">
+<div layout:fragment="content">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-title">Register Page</div>
+<!-- /*     <form action="/board/register" method="post">   */-->
+      <div class="input-group mb-3">
+        <span class="input-group-text">Bno</span>
+        <input type="text" class="form-controller" name="bno" id="bno" th:value="${board.bno}">
+      </div>
+
+      <div class="input-group mb-3">
+          <span class="input-group-text">Title</span>
+          <input type="text" class="form-controller" name="title" id="title" th:value="${board.title}">
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Content</span>
+          <textarea class="form-controller col-sm-5" name="content" id="content" row="5">[[${board.content}]]</textarea>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Author</span>
+          <input type=text class="form-controller" name="author"  th:value="${board.author}"></input>
+        </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">ReadCount</span>
+        <input type=text class="form-controller" name="readcount"  th:value="${board.readcount}"></input>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">RegDate</span>
+        <input type=text class="form-controller" name="regdate"  th:value="${board.regDate}"></input>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">UpdateDate</span>
+        <input type=text class="form-controller" name="updatedate"  th:value="${board.updateDate}"></input>
+      </div>
+        <div class="input-group mb-3" th:with="link=${pageRequestDTO.getLink()}">
+          <a th:href="|@{/board/modify(bno=${board.bno})}&${link}|">
+            <button type="button" class="btn btn-primary">Modify</button>
+          </a>
+          <a th:href="@{/board/remove(bno=${board.bno})}">
+            <button type="button" class="btn btn-danger">Remove</button>
+          </a>
+          <a th:href="|@{/board/list}?${link}|">
+            <button type="button" class="btn btn-secondary">List</button>
+          </a>
+        </div>
+<!-- /*     </form>   */-->
+    </div>
+  </div>
+</div>

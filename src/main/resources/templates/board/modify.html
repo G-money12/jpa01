@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}"
+      lang="en">
+<div layout:fragment="content">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">Modify Page</div>
+        <form action="/board/modify" method="post">
+          <input type="hidden" name="bno" th:value="${board.bno}">
+          <input type="hidden" name="author" th:value="${board.author}">
+
+          <div class="input-group mb-3">
+            <span class="input-group-text">Title</span>
+            <input type="text" class="form-controller" name="title" id="title" th:value="${board.title}">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Content</span>
+            <textarea class="form-controller col-sm-5" name="content" id="content" row="5">[[${board.content}]]</textarea>
+          </div>
+          <div class="input-group mb-3">
+            <button type="submit" class="btn btn-primary">Modify</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
